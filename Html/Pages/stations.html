@@ -1,0 +1,65 @@
+<title>
+    {{pageTitle}}
+</title>
+
+<head>
+    <script type="text/javascript" src="/Js/Pages/stations.js"></script>
+</head>
+
+
+<div id="app" ng-app="stationsApp" ng-controller="stationCtrl">
+
+    <div class="container mt-4 border">
+        {{pageTitle}}
+
+        <div class="row g-3 align-items-center">
+            
+            <br/>
+            <div class="col-auto" ng-init="fetchStations()">
+                <table id="tblStations" class="table table-striped">
+                    <thead>
+                        <th>StationId</th>
+                        <th>Station</th>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td>1</td>
+                            <td>Test Namn</td>
+                        </tr> -->
+                        <tr data-ng-repeat="data in stationer">
+                            <td>
+                                {{data.StationId}}
+                                
+                            </td>
+                            <td>
+                                {{data.StationName}}
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div data-pagination="" data-num-pages="numOfPages()" data-current-page="curPage" data-max-size="maxSize" data-boundary-links="true"></div> 
+            </div>
+
+            <!-- <div class="col-auto">
+                <select name="stations" ng-options="station.stationName for station in staticList" ng-change="getdetails()" ng-model="staticList" class="form-control">
+                    <option value="">Select station</option>
+                </select>
+            </div>
+            
+            <div class="col-auto">
+                <select name="stations" ng-options="station.stationName for station in staticList" ng-model="staticList" class="form-control">
+                    <option value="">Select station</option>
+                </select>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-auto">
+                <input type="button" title="btnTest" name="test" value="Search" id="btnSearch" ng-click="TestButton('hello world')" />
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

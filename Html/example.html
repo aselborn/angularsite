@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<div class="container border">
+        
+    <div class="row mt-4 border">
+        <div ng-app="myApp" ng-controller="mainCtrl" class="w3-block">
+
+            <p>Name: <input type="text" ng-model="name" id="txName">
+                
+                <input type="button" title="btnTest" name="test" value="Search" id="btnSearch" ng-click="globalFunction.TestButton('hello world')" />
+            </p>
+            <p>Search:<span ng-bind="name" id="idName"></span></p>
+
+            <form ng-app="" name="myForm" ng-init="myText='kalle@anka.com'" >
+                <input type="email" name="myAddress" ng-model="myText" required>
+                <h1>status</h1>
+                {{myform.myAddress.$valid}}
+                {{myform.myAddress.$dirty}}
+                {{myform.myAddress.$touched}}
+            </form>
+
+            <select name="stations" ng-options="station.stationName for station in globalFunction.stationList" ng-change="getdetails()" ng-model="globalFunction.stationList">
+                <option value="">Select station</option>
+            </select>
+            <br />
+
+            <table datatable="ng" class="table table-bordered table-striped" >
+                <thead>
+                    <th>firstName</th>
+                    <th>lastName</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="name in stations">
+                        <td>{{name.stationName}}</td>
+                        <td>{{name.stationName}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+        
+    </div>
+</div>
