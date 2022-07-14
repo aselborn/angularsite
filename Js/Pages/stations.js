@@ -2,7 +2,7 @@
 app.controller('stationCtrl', function($scope, $http){
 
     $scope.pageTitle= {};
-    $scope.pageTitle = 'SMHI station lists';
+    $scope.pageTitle = 'SMHI station lists from DB';
     $scope.curPage = 1;
     $scope.itemsPerPage = 3;
     $scope.maxSize = 5;
@@ -25,7 +25,11 @@ app.controller('stationCtrl', function($scope, $http){
     //TestButton.
     $scope.TestButton = function (msg){
 
-        alert('Hello World input was ' + msg);
+        alert('Hello World input was >>' + msg);
         
     };
+
+    $scope.RowClick = function(msg){
+        alert('Row Click id => ' + msg);
+    }
 });

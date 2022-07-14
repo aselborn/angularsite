@@ -18,7 +18,7 @@ app.controller('mainCtrl', function ($scope){
 
     $scope.globalFunction.TestButton = function (msg){
 
-        alert('Hello World input was ' + msg);
+        alert('Hello World input was> ' + msg);
         
     };
 
