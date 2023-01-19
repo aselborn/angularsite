@@ -27,7 +27,7 @@
                             <td>Test Namn</td>
                         </tr> -->
                         
-                        <tr data-ng-repeat="data in stationer" ng-click="RowClick( ' +{{data.StationId}} + ')">
+                        <tr data-ng-repeat="data in stationer" ng-click="RowClick({{data.StationId}})">
                             <td >
                                 {{data.StationId}}
                                 
