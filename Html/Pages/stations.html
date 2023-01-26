@@ -20,26 +20,40 @@
                     <thead>
                         <th>StationId</th>
                         <th>Station</th>
+                        <th>Från</th>
+                        <th>Till</th>
+                        <th>Aktiv</th>
+                        <th class="text-center">Senaste timma?</th>
                     </thead>
                     <tbody>
-                        <!-- <tr>
-                            <td>1</td>
-                            <td>Test Namn</td>
-                        </tr> -->
-                        
-                        <tr data-ng-repeat="data in stationer" ng-click="RowClick({{data.StationId}})">
+                        <tr data-ng-repeat="data in stationer" ng-click="MyRow(data)" >
                             <td >
-                                {{data.StationId}}
-                                
+                                {{data.station_id}}                           
                             </td>
                             <td>
-                                {{data.StationName}}
-                                
+                                {{data.station_name}}
+                            </td>
+                            <td>
+                                {{data.from_date}}
+                            </td>
+                            <td>
+                                {{data.to_date}}
+                            </td>
+                            <td>
+                                {{data.active}}
+                            </td>
+                            <!-- <td  class="text-center"> -->
+                                <!-- {{data.latest_hour}} -->
+                            <!-- </td> -->
+                            <td>
+                                <input type="checkbox" ng-model="string" value="{{data.latest_hour}}" ng-checked={{data.latest_hour}}>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div data-pagination="" data-num-pages="numOfPages()" data-current-page="curPage" data-max-size="maxSize" data-boundary-links="true"></div> 
+                <div data-pagination="" data-num-pages="numOfPages()" data-current-page="curPage" data-max-size="maxSize" data-boundary-links="true">
+                    
+                </div> 
             </div>
 
             <!-- <div class="col-auto">
@@ -55,6 +69,10 @@
             </div> -->
         </div>
         <div class="row">
+            <div class="col-auto">
+                <input type="text" id="txtSearchStation" value="" class="" width="140"/>
+            </div>
+            
             <div class="col-auto">
                 <input type="button" title="btnTest" name="test" value="Search" id="btnSearch" ng-click="TestButton('hello world')" />
             </div>

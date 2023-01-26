@@ -1,25 +1,29 @@
 
+/*
+    Station controller.
+*/
 app.controller('stationCtrl', function($scope, $http){
 
     $scope.pageTitle= {};
-    $scope.pageTitle = 'SMHI station lists from DB';
+    $scope.pageTitle = 'Meterologiska stationer fran SMHI';
     $scope.curPage = 1;
     $scope.itemsPerPage = 3;
     $scope.maxSize = 5;
 
+    //Hämtar stationer via php. Objectet heter stationer!.
     $scope.fetchStations = function() {
 
         var path = window.location.href;
 
-        $http.get('./php/fetch.php').then(function (data) {
+        $http.get('./php/fetch_stationlist_pg.php').then(function (data) {
             $scope.stationer = data.data;
         }
         
     )};
 
     //Number of pages.
-    $scope.numberOfPages = function(){
-        
+    $scope.numOfPages = function(){
+        $scope.page_count = 10;
     }
 
     //TestButton.
@@ -32,4 +36,11 @@ app.controller('stationCtrl', function($scope, $http){
     $scope.RowClick = function(msg){
         alert('Row Click id => ' + msg);
     }
+
+    $scope.MyRow = function(msg){
+        alert ('Row click => ' + msg.station_id );
+    }
+
+        
+    
 });

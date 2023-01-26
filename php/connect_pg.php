@@ -8,24 +8,18 @@
 
 class PGConnection
 {
-    private $host        = "host = 127.0.0.1";
+    private $host        = "host = 192.168.86.22";
     private $port        = "port = 5432";
     private $dbname      = "dbname = smhi";
     private $credentials = "user=anders password=quilla";
 
-    
+    public $dbConnection;
     
     public
     function __construct()
     {
-        
-         $db = pg_connect( "$this->host $this->port $this->dbname $this->credentials"  );
-        if(!$db) {
-            echo "Error : Unable to open database\n";
-        } else {
-            echo "Opened database successfully\n";
-        }
-
+    
+         $this->dbConnection = pg_connect( "$this->host $this->port $this->dbname $this->credentials"  );
     }
 
     protected
@@ -35,7 +29,50 @@ class PGConnection
         
     }
 
-    
+    public function GetStationList($limit)
+    {
+        $sql = "SELECT station_id, station_name, from_date, to_date, active FROM public.stations order by station_name limit $limit;";
+        $ret = pg_query($this->dbConnection, $sql);
+        while ($row = pg_fetch_array($ret))
+        {
+            $data[] = $row;
+        }
+
+        return json_encode($data);
+    }
+
+    public function GetStationRunList($limit)
+    {
+        $sql = "select s.station_id ,s.station_name, s.from_date , s.to_date, s.active ,r.latest_hour, r.latest_day , r.latest_months , r.archive ";
+        $sql .= " from stations s inner join runconfig r on s.station_id =r.station_id order by station_name limit $limit";
+
+        $ret = pg_query($this->dbConnection, $sql);
+
+        while ($row = pg_fetch_array($ret))
+        {
+            $data[] = $row;
+        }
+        return json_encode($data);
+
+    }
+
+    public function GetDBConnection()
+    {
+        return $this->dbConnection;
+    }
+    public function test_select()
+    {
+        $dbConnection = $this->dbConnection;
+        $sql = "select station_name from public.stations";
+        $ret = pg_query($dbConnection, $sql);
+
+        while ($row = pg_fetch_row($ret))
+        {
+            $stationName = "stationsNamn = " . $row[0] . "\n";
+            echo $stationName;
+        }
+
+    }
     public
     function get_rows ($fields, $id=NULL, $tablename = NULL)
     {
@@ -47,24 +84,6 @@ class PGConnection
         // return $rows;  
     }
 
-    public function get_stations()
-    {
-        // $sql = "SELECT * FROM stations s;";
-        // $result = $this->query_executed($sql);
-        // $rows = $this -> get_fetch_data($result);
-        // return $rows;
-    }
-
-    protected
-    function get_fetch_data($r)  
-    {  
-        // $array = array();  
-        // while ($rows = pg_fetch_assoc($r))  
-        // {  
-        //     $array[] = $rows;  
-        // }  
-        // return $array;  
-    }    
 
 }
 

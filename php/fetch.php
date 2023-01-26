@@ -1,5 +1,11 @@
 <?php 
 
+    include('connect_pg.php');
+
+    $pgInstance = new PGConnection ();  
+
+    $pgInstance->test_select();
+
     // $userName = 'root';
     // $serverName = 'localhost';
     // $password = 'lytill53';

@@ -25,7 +25,7 @@ app.controller('mainCtrl', function ($scope){
 
     $scope.globalFunction.GetStations = function(){
 
-        $http.get('../php/fetch.php').success(function(data){
+        $http.get('../php/fetch_pg.php').success(function(data){
 
             $scope.globalFunction.GetStations = data;
 
