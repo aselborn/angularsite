@@ -34,11 +34,17 @@ app.controller('stationCtrl', function($scope, $http){
     };
 
     $scope.RowClick = function(msg){
+        console.log(msg);
         alert('Row Click id => ' + msg);
     }
 
     $scope.MyRow = function(msg){
-        alert ('Row click => ' + msg.station_id );
+        console.log(msg);
+
+        
+
+        $scope.updaterunstation = msg;
+
     }
 
         

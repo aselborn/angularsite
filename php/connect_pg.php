@@ -43,7 +43,7 @@ class PGConnection
 
     public function GetStationRunList($limit)
     {
-        $sql = "select s.station_id ,s.station_name, s.from_date , s.to_date, s.active ,r.latest_hour, r.latest_day , r.latest_months , r.archive ";
+        $sql = "select s.station_id ,s.station_name, s.from_date , s.to_date, s.active ,r.latest_hour::int, r.latest_day::int , r.latest_months::int , r.archive::int  ";
         $sql .= " from stations s inner join runconfig r on s.station_id =r.station_id order by station_name limit $limit";
 
         $ret = pg_query($this->dbConnection, $sql);

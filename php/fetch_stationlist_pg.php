@@ -6,9 +6,8 @@ $pgInstance = new PGConnection ();
 
 $connection = $pgInstance->dbConnection;
 
-//echo $pgInstance->GetStationList(5);
-echo $pgInstance->GetStationRunList(5);
 
+echo $pgInstance->GetStationRunList(5);
 
 ?>
 
