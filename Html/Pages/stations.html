@@ -56,10 +56,11 @@
                                 <input type="checkbox"  value="{{data.latest_day}}" ng-checked={{data.latest_day}}>
                             </td>
                             <td>
-                                <input type="checkbox" value="{{data.latest_hour}}" ng-checked={{data.latest_month}}>
+                                <input type="checkbox" value="{{data.latest_month}}" ng-checked={{data.latest_month}}>
                             </td>
                             <td>
-                                <input type="checkbox" id="chkArchive" ng-click="MyRow(data)" value="{{data.latest_hour}}" ng-checked={{data.archive}} >
+                                <input type="checkbox" id="chkArchive" ng-model="check" ng-true-value="1" ng-false-value="0"
+                                ng-change="MyRow(data.station_id, check )" value="{{data.archive}}" ng-checked={{data.archive}} >
                             </td>
 
                         </tr>
@@ -88,7 +89,7 @@
             </div>
             
             <div class="col-auto">
-                <input type="button" title="btnTest" name="test" value="Search" id="btnSearch" ng-click="TestButton('hello world')" class="btn-outline-primary" />
+                <input type="button" title="btnTest" name="test" value="Sök" id="btnSearch" ng-click="TestButton('hello world')" class="btn-outline-primary" />
             </div>
         </div>
 

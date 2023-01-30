@@ -38,15 +38,46 @@ app.controller('stationCtrl', function($scope, $http){
         alert('Row Click id => ' + msg);
     }
 
-    $scope.MyRow = function(msg){
-        console.log(msg);
+    $scope.MyRow = function(data, active){
+        console.log(data, active);
 
-        
+         if (active)
+         {
+            // $http.post('./php/toggle_station.php').then(function (data) {
+                // $scope.stationer = data.data;
 
-        $scope.updaterunstation = msg;
+            var req = {
+                method: 'POST',
+                url : './php/toggle_station.php',
+                data: {
+
+                }
+            };
+
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "./php/toggle_station.php",
+                    
+                    data: {
+                        station_id : data,
+                        isActive : active
+                    } ,
+                    success: function(data) {
+                        alert(data);
+                    },
+                        error: function(xhr, status, error) {
+                        console.error(xhr);
+                        }
+                }
+            );
+
 
     }
 
-        
-    
+    $scope.clicked = {};
+    $scope.clicked.Archive = function ($event){
+        alert($event);
+    };
+} 
 });
