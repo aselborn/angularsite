@@ -38,46 +38,60 @@ app.controller('stationCtrl', function($scope, $http){
         alert('Row Click id => ' + msg);
     }
 
-    $scope.MyRow = function(data, active){
-        console.log(data, active);
+    $scope.MyRow = function(data, active, parameter){
+        console.log(data, active, parameter);
 
-         if (active)
-         {
-            // $http.post('./php/toggle_station.php').then(function (data) {
-                // $scope.stationer = data.data;
+        var phpLink = "./php/toggle_station.php";
+        const header = new Headers();
+        header.append("Content-Type", 'application/json');
+        let phpData = {station: data, setting: active, prm: parameter};
 
-            var req = {
-                method: 'POST',
-                url : './php/toggle_station.php',
-                data: {
+        $http({
+            
+            method: 'POST',
+            url: phpLink,
+            data: phpData
+        }).then(function(response){
+            $scope.data = response.data;
+        }).catch(function(err){
+            $scope.status = err.status;
+            throw err;
+        });
 
-                }
-            };
+        // if (active)
+        // {
+        //     // $http.post('./php/toggle_station.php').then(function (data) {
+        //         // $scope.stationer = data.data;
 
-            $.ajax(
-                {
-                    type: "POST",
-                    url: "./php/toggle_station.php",
+        //     var req = {
+        //         method: 'POST',
+        //         url : './php/toggle_station.php',
+        //         data: {
+
+        //         }
+        //     };
+
+        //     $.ajax(
+        //         {
+        //             type: "POST",
+        //             url: "./php/toggle_station.php",
                     
-                    data: {
-                        station_id : data,
-                        isActive : active
-                    } ,
-                    success: function(data) {
-                        alert(data);
-                    },
-                        error: function(xhr, status, error) {
-                        console.error(xhr);
-                        }
-                }
-            );
+        //             data: {
+        //                 station_id : data,
+        //                 isActive : active
+        //             } ,
+        //             success: function(data) {
+        //                 alert(data);
+        //             },
+        //                 error: function(xhr, status, error) {
+        //                 console.error(xhr);
+        //                 }
+        //         }
+        //     );
 
 
-    }
+        // }
 
-    $scope.clicked = {};
-    $scope.clicked.Archive = function ($event){
-        alert($event);
-    };
-} 
+    
+    } 
 });

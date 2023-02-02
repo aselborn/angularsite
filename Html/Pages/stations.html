@@ -10,88 +10,100 @@
 
 <div id="app" ng-app="stationsApp" ng-controller="stationCtrl">
 
-    <div class="container mt-4 border  ">
-        {{pageTitle}}
 
-        <div class="row g-3 align-items-center">
-            
-            <br/>
-            <div class="col-auto" ng-init="fetchStations()">
-                <table id="tblStations" class="table table-striped">
-                    <thead>
-                        <th>StationId</th>
-                        <th>Station</th>
-                        <th>Från</th>
-                        <th>Till</th>
-                        <th>Aktiv</th>
-                        <th class="text-center">Timma?</th>
-                        <th class="text-center">Dag?</th>
-                        <th class="text-center">Månad?</th>
-                        <th class="text-center">Arkiv?</th>
-                    </thead>
-                    <tbody>
-                        <tr data-ng-repeat="data in stationer"  >
-                            <td >
-                                {{data.station_id}}                           
-                            </td>
-                            <td>
-                                {{data.station_name}}
-                            </td>
-                            <td>
-                                {{data.from_date}}
-                            </td>
-                            <td>
-                                {{data.to_date}}
-                            </td>
-                            <td>
-                                {{data.active}}
-                            </td>
-                            <!-- <td  class="text-center"> -->
-                                <!-- {{data.latest_hour}} -->
-                            <!-- </td> -->
-                            <td>
-                                <input type="checkbox"  value="{{data.latest_hour}}" ng-checked="{{data.latest_hour}}">
-                            </td>
-                            <td>
-                                <input type="checkbox"  value="{{data.latest_day}}" ng-checked={{data.latest_day}}>
-                            </td>
-                            <td>
-                                <input type="checkbox" value="{{data.latest_month}}" ng-checked={{data.latest_month}}>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="chkArchive" ng-model="check" ng-true-value="1" ng-false-value="0"
-                                ng-change="MyRow(data.station_id, check )" value="{{data.archive}}" ng-checked={{data.archive}} >
-                            </td>
 
-                        </tr>
-                    </tbody>
-                </table>
-                <div data-pagination="" data-num-pages="numOfPages()" data-current-page="curPage" data-max-size="maxSize" data-boundary-links="true">
-                    
-                </div> 
-            </div>
-
-            <!-- <div class="col-auto">
-                <select name="stations" ng-options="station.stationName for station in staticList" ng-change="getdetails()" ng-model="staticList" class="form-control">
-                    <option value="">Select station</option>
-                </select>
-            </div>
-            
-            <div class="col-auto">
-                <select name="stations" ng-options="station.stationName for station in staticList" ng-model="staticList" class="form-control">
-                    <option value="">Select station</option>
-                </select>
-            </div> -->
-        </div>
+    <div class="container mt-4   ">
+        {{pageTitle}} 
         <div class="row">
+
             <div class="col-auto">
-                <input type="text" id="txtSearchStation" value="" class="" width="140"/>
+                <div class="row g-3 align-items-center">
+                
+                    <br/>
+                    <div class="col-auto" ng-init="fetchStations()">
+                        <table id="tblStations" class="table table-striped">
+                            <thead>
+                                <th>StationId</th>
+                                <th>Station</th>
+                                <th>Från</th>
+                                <th>Till</th>
+                                <th>Aktiv</th>
+                                <th class="text-center">Timma?</th>
+                                <th class="text-center">Dag?</th>
+                                <th class="text-center">Månad?</th>
+                                <th class="text-center">Arkiv?</th>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="data in stationer"  >
+                                    <td >
+                                        {{data.station_id}}                           
+                                    </td>
+                                    <td>
+                                        {{data.station_name}}
+                                    </td>
+                                    <td>
+                                        {{data.from_date}}
+                                    </td>
+                                    <td>
+                                        {{data.to_date}}
+                                    </td>
+                                    <td>
+                                        {{data.active}}
+                                    </td>
+                                    <!-- <td  class="text-center"> -->
+                                        <!-- {{data.latest_hour}} -->
+                                    <!-- </td> -->
+                                    <td>
+                                        <input type="checkbox"  value="{{data.latest_hour}}" ng-checked="{{data.latest_hour}}">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox"  value="{{data.latest_day}}" ng-checked={{data.latest_day}}>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" value="{{data.latest_month}}" ng-checked={{data.latest_month}}>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkArchive" ng-model="check" ng-true-value="1" ng-false-value="0"
+                                        ng-change="MyRow(data.station_id, check, 'archive')" value="{{data.archive}}" ng-checked={{data.archive}} >
+                                    </td>
+        
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="col-auto">
+                        <div class="row-cols-auto">
+                            <label for="selectStation"></label>
+                            <select id="cboStation" name="selectStation">
+                                <option>Test</option>
+                                <option>Tes1</option>
+                            </select>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+              
+    
             </div>
+
             
-            <div class="col-auto">
-                <input type="button" title="btnTest" name="test" value="Sök" id="btnSearch" ng-click="TestButton('hello world')" class="btn-outline-primary" />
+        </div>
+        
+        <div class="col-auto">
+            <div class="row">
+                <div class="col-auto">
+                    <input type="text" id="txtSearchStation" value="" class="" width="140"/>
+                </div>
+                
+                <div class="col-auto">
+                    <input type="button" title="btnTest" name="test" value="Sök" id="btnSearch" ng-click="TestButton('hello world')" class="btn-outline-primary" />
+                </div>
             </div>
         </div>
+        
+        
 
     </div>
 
