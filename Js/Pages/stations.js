@@ -38,7 +38,7 @@ app.controller('stationCtrl', function($scope, $http){
         alert('Row Click id => ' + msg);
     }
 
-    $scope.MyRow = function(data, active, parameter){
+    $scope.toggleOnOff = function(data, active, parameter){
         console.log(data, active, parameter);
 
         var phpLink = "./php/toggle_station.php";
@@ -56,42 +56,6 @@ app.controller('stationCtrl', function($scope, $http){
         }).catch(function(err){
             $scope.status = err.status;
             throw err;
-        });
-
-        // if (active)
-        // {
-        //     // $http.post('./php/toggle_station.php').then(function (data) {
-        //         // $scope.stationer = data.data;
-
-        //     var req = {
-        //         method: 'POST',
-        //         url : './php/toggle_station.php',
-        //         data: {
-
-        //         }
-        //     };
-
-        //     $.ajax(
-        //         {
-        //             type: "POST",
-        //             url: "./php/toggle_station.php",
-                    
-        //             data: {
-        //                 station_id : data,
-        //                 isActive : active
-        //             } ,
-        //             success: function(data) {
-        //                 alert(data);
-        //             },
-        //                 error: function(xhr, status, error) {
-        //                 console.error(xhr);
-        //                 }
-        //         }
-        //     );
-
-
-        // }
-
-    
+        });    
     } 
 });

@@ -16,11 +16,11 @@
         {{pageTitle}} 
         <div class="row">
 
-            <div class="col-auto">
+            <div class="col-auto ">
                 <div class="row g-3 align-items-center">
                 
                     <br/>
-                    <div class="col-auto" ng-init="fetchStations()">
+                    <div class="col-auto " ng-init="fetchStations()">
                         <table id="tblStations" class="table table-striped">
                             <thead>
                                 <th>StationId</th>
@@ -54,17 +54,23 @@
                                         <!-- {{data.latest_hour}} -->
                                     <!-- </td> -->
                                     <td>
-                                        <input type="checkbox"  value="{{data.latest_hour}}" ng-checked="{{data.latest_hour}}">
+                                        <input type="checkbox"  value="{{data.latest_hour}}" id="chkHour" ng-model="check.hour" ng-true-value="1" ng-false-value="0" 
+                                        ng-change="toggleOnOff(data.station_id, check.hour, 'latest_hour')" 
+                                        ng-checked="{{data.latest_hour}}">
                                     </td>
                                     <td>
-                                        <input type="checkbox"  value="{{data.latest_day}}" ng-checked={{data.latest_day}}>
+                                        <input type="checkbox"  value="{{data.latest_day}}" id="chkDay" ng-model="check.day" ng-true-value="1" ng-false-value="0"
+                                        ng-change="toggleOnOff(data.station_id, check.day, 'latest_day')" 
+                                        ng-checked={{data.latest_day}}>
                                     </td>
                                     <td>
-                                        <input type="checkbox" value="{{data.latest_month}}" ng-checked={{data.latest_month}}>
+                                        <input type="checkbox" value="{{data.latest_month}}" id="chkMonth" ng-model="check.month" ng-true-value="1" ng-false-value="0"
+                                        ng-change="toggleOnOff(data.station_id, check.month, 'latest_months')" 
+                                        ng-checked={{data.latest_month}}>
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="chkArchive" ng-model="check" ng-true-value="1" ng-false-value="0"
-                                        ng-change="MyRow(data.station_id, check, 'archive')" value="{{data.archive}}" ng-checked={{data.archive}} >
+                                        <input type="checkbox" id="chkArchive" ng-model="check.archive" ng-true-value="1" ng-false-value="0"
+                                        ng-change="toggleOnOff(data.station_id, check.archive, 'archive')" value="{{data.archive}}" ng-checked={{data.archive}} >
                                     </td>
         
                                 </tr>
@@ -78,6 +84,7 @@
                             <select id="cboStation" name="selectStation">
                                 <option>Test</option>
                                 <option>Tes1</option>
+                                <option>Tes2</option>
                             </select>
                         </div>
                         

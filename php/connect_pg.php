@@ -8,10 +8,12 @@
 
 class PGConnection
 {
+    //private $host        = "host = 192.168.86.22";
     private $host        = "host = localhost";
     private $port        = "port = 5432";
     private $dbname      = "dbname = smhi";
-    private $credentials = "user=anders password=quilla";
+    //private $credentials = "user=anders password=quilla";
+    private $credentials = "user=postgres password=lytill53";
 
     public $dbConnection;
     

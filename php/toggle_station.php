@@ -1,45 +1,26 @@
 <?php
+include_once('./Dto/RunconfigDto.php');
+include_once('./Repository/update_station.php');
+include_once('connect_pg.php');
 
 $postJSON = file_get_contents("php://input");
 $dataArr = json_decode($postJSON, TRUE);
 
+$pgInstance = new PGConnection ();
+
 var_dump($dataArr);
 
 $conf = new Runconfig();
-$conf->set_statusValue(1);
+$repo = new UpdateSmhi($pgInstance->dbConnection);
 
-echo $conf->get_statusValue();
-echo "hej";
-class Runconfig
-{
-    public $parameter;
-    public $statusValue;
-    public $stationId;
+$stationId = $dataArr['station'];
+$settingValue = $dataArr['setting'] == "1" ? "t" : "f";
+$parameter = $dataArr['prm'];
 
-    public function set_parameter($prm){
-        $this->parameter = $prm;
-    }
+$conf->set_statusValue($settingValue);
+$conf->set_stationId($stationId);
+$conf->set_parameter($parameter);
 
-    public function get_parameter(){
-        return $this->parameter;
-    }
-
-    public function set_statusValue($statvalue){
-        $this->statusValue = $statvalue;
-    }
-
-    public function get_statusValue(){
-        return $this->statusValue;
-    }
-
-    public function set_stationId($id){
-        $this->stationId = $stationId;
-    }
-
-    public function get_stationId(){
-        return $this->stationId;
-    }
-
-}
+echo $repo->UpdateRunconfig($conf);
 
 ?>
